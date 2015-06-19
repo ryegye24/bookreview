@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_bookreview" default="compile.module.bookreview">
+  <dirname property="module.bookreview.basedir" file="${ant.file.module_bookreview}"/>
+  
+  <property name="module.jdk.home.bookreview" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.bookreview" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.bookreview" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.bookreview" value="-encoding UTF-8 -source 1.7 -target 1.7 ${compiler.args}"/>
+  
+  <property name="bookreview.output.dir" value="${module.bookreview.basedir}/target/bookreview-1.0-SNAPSHOT/WEB-INF/classes"/>
+  <property name="bookreview.testoutput.dir" value="${module.bookreview.basedir}/target/test-classes"/>
+  
+  <path id="bookreview.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="bookreview.module.production.classpath">
+    <path refid="${module.jdk.classpath.bookreview}"/>
+    <path refid="library.maven:_com.google.appengine:appengine-api-1.0-sdk:1.9.22.classpath"/>
+    <path refid="library.maven:_javax.servlet:servlet-api:2.5.classpath"/>
+    <path refid="library.maven:_jstl:jstl:1.2.classpath"/>
+    <path refid="library.maven:_com.googlecode.objectify:objectify:4.0.1.classpath"/>
+    <path refid="library.maven:_com.google.guava:guava:14.0.1.classpath"/>
+  </path>
+  
+  <path id="bookreview.runtime.production.module.classpath">
+    <pathelement location="${bookreview.output.dir}"/>
+    <path refid="library.maven:_com.google.appengine:appengine-api-1.0-sdk:1.9.22.classpath"/>
+    <path refid="library.maven:_jstl:jstl:1.2.classpath"/>
+    <path refid="library.maven:_com.googlecode.objectify:objectify:4.0.1.classpath"/>
+    <path refid="library.maven:_com.google.guava:guava:14.0.1.classpath"/>
+  </path>
+  
+  <path id="bookreview.module.classpath">
+    <path refid="${module.jdk.classpath.bookreview}"/>
+    <pathelement location="${bookreview.output.dir}"/>
+    <path refid="library.maven:_com.google.appengine:appengine-api-1.0-sdk:1.9.22.classpath"/>
+    <path refid="library.maven:_javax.servlet:servlet-api:2.5.classpath"/>
+    <path refid="library.maven:_jstl:jstl:1.2.classpath"/>
+    <path refid="library.maven:_com.googlecode.objectify:objectify:4.0.1.classpath"/>
+    <path refid="library.maven:_com.google.guava:guava:14.0.1.classpath"/>
+    <path refid="library.maven:_com.google.appengine:appengine-testing:1.9.22.classpath"/>
+    <path refid="library.maven:_com.google.appengine:appengine-api-stubs:1.9.22.classpath"/>
+  </path>
+  
+  <path id="bookreview.runtime.module.classpath">
+    <pathelement location="${bookreview.testoutput.dir}"/>
+    <pathelement location="${bookreview.output.dir}"/>
+    <path refid="library.maven:_com.google.appengine:appengine-api-1.0-sdk:1.9.22.classpath"/>
+    <path refid="library.maven:_javax.servlet:servlet-api:2.5.classpath"/>
+    <path refid="library.maven:_jstl:jstl:1.2.classpath"/>
+    <path refid="library.maven:_com.googlecode.objectify:objectify:4.0.1.classpath"/>
+    <path refid="library.maven:_com.google.guava:guava:14.0.1.classpath"/>
+    <path refid="library.maven:_com.google.appengine:appengine-testing:1.9.22.classpath"/>
+    <path refid="library.maven:_com.google.appengine:appengine-api-stubs:1.9.22.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.bookreview">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.bookreview">
+    <patternset refid="excluded.from.module.bookreview"/>
+  </patternset>
+  
+  <path id="bookreview.module.sourcepath">
+    <dirset dir="${module.bookreview.basedir}">
+      <include name="src/main/java"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.bookreview" depends="compile.module.bookreview.production,compile.module.bookreview.tests" description="Compile module bookreview"/>
+  
+  <target name="compile.module.bookreview.production" depends="register.custom.compilers" description="Compile module bookreview; production classes">
+    <mkdir dir="${bookreview.output.dir}"/>
+    <javac2 destdir="${bookreview.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.bookreview}/javac">
+      <compilerarg line="${compiler.args.bookreview}"/>
+      <bootclasspath refid="bookreview.module.bootclasspath"/>
+      <classpath refid="bookreview.module.production.classpath"/>
+      <src refid="bookreview.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.bookreview"/>
+    </javac2>
+    
+    <copy todir="${bookreview.output.dir}">
+      <fileset dir="${module.bookreview.basedir}/src/main/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.bookreview.tests" depends="register.custom.compilers,compile.module.bookreview.production" description="compile module bookreview; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.bookreview" description="cleanup module">
+    <delete dir="${bookreview.output.dir}"/>
+    <delete dir="${bookreview.testoutput.dir}"/>
+  </target>
+</project>

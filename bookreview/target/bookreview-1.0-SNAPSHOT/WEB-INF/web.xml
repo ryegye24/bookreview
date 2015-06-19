@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+  <servlet>
+    <servlet-name>submitbookreview</servlet-name>
+    <servlet-class>com.rpurcell.portfolio.bookreview.SubmitBookReviewServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>submitbookreview</servlet-name>
+    <url-pattern>/submitbookreview</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>retrievebookinfo</servlet-name>
+    <servlet-class>com.rpurcell.portfolio.bookreview.RetrieveBookInfoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>retrievebookinfo</servlet-name>
+    <url-pattern>/retrievebookinfo</url-pattern>
+  </servlet-mapping>
+  <filter>
+    <filter-name>ObjectifyFilter</filter-name>
+    <filter-class>com.googlecode.objectify.ObjectifyFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>ObjectifyFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <listener>
+    <listener-class>com.rpurcell.portfolio.bookreview.ObjectifyHelper</listener-class>
+  </listener>
+</web-app>

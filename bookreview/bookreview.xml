@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="bookreview" default="all">
+  
+  
+  <property file="bookreview.properties"/>
+  <!-- Uncomment the following property if no tests compilation is needed -->
+  <!-- 
+  <property name="skip.tests" value="true"/>
+   -->
+  
+  <!-- Compiler options -->
+  
+  <property name="compiler.debug" value="on"/>
+  <property name="compiler.generate.no.warnings" value="off"/>
+  <property name="compiler.args" value=""/>
+  <property name="compiler.max.memory" value="700m"/>
+  <patternset id="ignored.files">
+    <exclude name="**/*.hprof/**"/>
+    <exclude name="**/*.pyc/**"/>
+    <exclude name="**/*.pyo/**"/>
+    <exclude name="**/*.rbc/**"/>
+    <exclude name="**/*~/**"/>
+    <exclude name="**/.DS_Store/**"/>
+    <exclude name="**/.bundle/**"/>
+    <exclude name="**/.git/**"/>
+    <exclude name="**/.hg/**"/>
+    <exclude name="**/.svn/**"/>
+    <exclude name="**/.tox/**"/>
+    <exclude name="**/CVS/**"/>
+    <exclude name="**/RCS/**"/>
+    <exclude name="**/SCCS/**"/>
+    <exclude name="**/__pycache__/**"/>
+    <exclude name="**/_svn/**"/>
+    <exclude name="**/rcs/**"/>
+    <exclude name="**/vssver.scc/**"/>
+    <exclude name="**/vssver2.scc/**"/>
+  </patternset>
+  <patternset id="library.patterns">
+    <include name="*.zip"/>
+    <include name="*.apk"/>
+    <include name="*.war"/>
+    <include name="*.egg"/>
+    <include name="*.ear"/>
+    <include name="*.ane"/>
+    <include name="*.swc"/>
+    <include name="*.jar"/>
+  </patternset>
+  <patternset id="compiler.resources">
+    <exclude name="**/?*.java"/>
+    <exclude name="**/?*.form"/>
+    <exclude name="**/?*.class"/>
+    <exclude name="**/?*.groovy"/>
+    <exclude name="**/?*.scala"/>
+    <exclude name="**/?*.flex"/>
+    <exclude name="**/?*.kt"/>
+    <exclude name="**/?*.clj"/>
+    <exclude name="**/?*.aj"/>
+  </patternset>
+  
+  <!-- JDK definitions -->
+  
+  <property name="jdk.bin.1.7" value="${jdk.home.1.7}/bin"/>
+  <path id="jdk.classpath.1.7">
+    <fileset dir="${jdk.home.1.7}">
+      <include name="../jdk/jre/lib/management-agent.jar"/>
+      <include name="../jdk/jre/lib/resources.jar"/>
+      <include name="../jdk/jre/lib/rt.jar"/>
+      <include name="../jdk/jre/lib/jsse.jar"/>
+      <include name="../jdk/jre/lib/jce.jar"/>
+      <include name="../jdk/jre/lib/charsets.jar"/>
+      <include name="../jdk/jre/lib/ext/sunec.jar"/>
+      <include name="../jdk/jre/lib/ext/sunpkcs11.jar"/>
+      <include name="../jdk/jre/lib/ext/localedata.jar"/>
+      <include name="../jdk/jre/lib/ext/zipfs.jar"/>
+      <include name="../jdk/jre/lib/ext/sunjce_provider.jar"/>
+      <include name="../jdk/jre/lib/ext/dnsns.jar"/>
+    </fileset>
+  </path>
+  
+  <property name="project.jdk.home" value="${jdk.home.1.7}"/>
+  <property name="project.jdk.bin" value="${jdk.bin.1.7}"/>
+  <property name="project.jdk.classpath" value="jdk.classpath.1.7"/>
+  
+  
+  <!-- Project Libraries -->
+  
+  <path id="library.maven:_com.google.appengine:appengine-api-1.0-sdk:1.9.22.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/google/appengine/appengine-api-1.0-sdk/1.9.22/appengine-api-1.0-sdk-1.9.22.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.google.appengine:appengine-api-stubs:1.9.22.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/google/appengine/appengine-api-stubs/1.9.22/appengine-api-stubs-1.9.22.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.google.appengine:appengine-testing:1.9.22.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/google/appengine/appengine-testing/1.9.22/appengine-testing-1.9.22.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.google.guava:guava:14.0.1.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/google/guava/guava/14.0.1/guava-14.0.1.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.googlecode.objectify:objectify:4.0.1.classpath">
+    <pathelement location="${path.variable.maven_repository}/com/googlecode/objectify/objectify/4.0.1/objectify-4.0.1.jar"/>
+  </path>
+  
+  <path id="library.maven:_javax.servlet:servlet-api:2.5.classpath">
+    <pathelement location="${path.variable.maven_repository}/javax/servlet/servlet-api/2.5/servlet-api-2.5.jar"/>
+  </path>
+  
+  <path id="library.maven:_jstl:jstl:1.2.classpath">
+    <pathelement location="${path.variable.maven_repository}/jstl/jstl/1.2/jstl-1.2.jar"/>
+  </path>
+  <!-- Register Custom Compiler Taskdefs -->
+  <property name="javac2.home" value="${idea.home}/lib"/>
+  <path id="javac2.classpath">
+    <pathelement location="${javac2.home}/javac2.jar"/>
+    <pathelement location="${javac2.home}/jdom.jar"/>
+    <pathelement location="${javac2.home}/asm-all.jar"/>
+    <pathelement location="${javac2.home}/jgoodies-forms.jar"/>
+  </path>
+  <target name="register.custom.compilers">
+    <taskdef name="javac2" classname="com.intellij.ant.Javac2" classpathref="javac2.classpath"/>
+    <taskdef name="instrumentIdeaExtensions" classname="com.intellij.ant.InstrumentIdeaExtensions" classpathref="javac2.classpath"/>
+  </target>
+  
+  <!-- Modules -->
+  
+  <import file="${basedir}/module_bookreview.xml"/>
+  
+  <target name="init" description="Build initialization">
+    <!-- Perform any build initialization in this target -->
+  </target>
+  
+  <target name="clean" depends="clean.module.bookreview" description="cleanup all"/>
+  
+  <target name="build.modules" depends="init, clean, compile.module.bookreview" description="build all modules"/>
+  
+  <target name="all" depends="build.modules" description="build all"/>
+</project>

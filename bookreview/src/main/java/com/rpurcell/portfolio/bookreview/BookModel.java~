@@ -1,0 +1,39 @@
+package com.rpurcell.portfolio.bookreview;
+
+import org.json.JSONArray; 
+import org.json.JSONObject;
+
+import com.googlecode.objectify.annotation.Entity;
+import com.googlecode.objectify.annotation.Id;
+
+/**
+ * The @Entity tells Objectify about our entity.  We also register it in
+ * ObjectifyHelper.java -- very important.
+ *
+ * This is never actually created, but gives a hint to Objectify about our Ancestor key.
+ */
+@Entity
+public class BookModel {
+  @Id public String ISBN;
+  public String title;
+  public String description;
+  
+  public BookModel(String bookISBN) {
+    this.ISBN = bookISBN;
+  }
+  
+  public BookModel(String bookISBN, String bookTitle) {
+    this(bookISBN);
+    this.title = bookTitle;
+  }
+  
+  public static BookModel getByISBN(String ISBN) {
+    return BookModel bookModel = ObjectifyService.ofy().load().type(BookModel.class).id(ISBN).now();
+  }
+  
+  public Key<BookModel> getKey() {
+    return Key.create(BookModel.class, this.ISBN);
+  }
+  
+  public
+}
