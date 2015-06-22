@@ -44,7 +44,6 @@ public class ReviewModel {
    **/
   public ReviewModel() {
     date = new Date();
-    ObjectifyService.ofy().save().entity(this).now();
   }
 
   /**
@@ -58,7 +57,6 @@ public class ReviewModel {
       theBook = Key.create(BookModel.class, "default");
     }
     this.content = content;
-    ObjectifyService.ofy().save().entity(this).now();
   }
 
   /**
@@ -67,7 +65,6 @@ public class ReviewModel {
   public ReviewModel(String bookISBN, String content, String email) {
     this(bookISBN, content);
     author_email = email;
-    ObjectifyService.ofy().save().entity(this).now();
   }
   
   public static List<ReviewModel> getReviewsByISBN(String ISBN) {
