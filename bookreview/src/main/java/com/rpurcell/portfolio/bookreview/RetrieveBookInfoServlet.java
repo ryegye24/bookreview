@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class RetrieveBookInfoServlet extends HttpServlet {
   @Override
-  public void doPost(HttpServletRequest req, HttpServletResponse resp)
+  public void doGet(HttpServletRequest req, HttpServletResponse resp)
       throws IOException {
     if (req.getParameter("isbn") != null) {
       String ISBN = req.getParameter("isbn");
