@@ -21,44 +21,29 @@ import javax.servlet.http.HttpServletResponse;
 
 public class RetrieveBookInfoServlet extends HttpServlet {
   @Override
-  public void doGet(HttpServletRequest req, HttpServletResponse resp)
+  public void doPost(HttpServletRequest req, HttpServletResponse resp)
       throws IOException {
-    if (req.getParameter("bookISBN") != null) {
-      String ISBN = req.getParameter("bookISBN");
+    if (req.getParameter("isbn") != null) {
+      String ISBN = req.getParameter("isbn");
+
       try {
         JSONObject result = new JSONObject();
         JSONObject book = BookModel.getJSONByISBN(ISBN);
         JSONArray reviews = new JSONArray();
         List<ReviewModel> review_models = ReviewModel.getReviewsByISBN(ISBN);
         for (int i = 0; i < review_models.size(); i++) {
-          JSONObject review = review_models.get(i).getJSONReview();
+          JSONObject review = review_models.get(i).getJSON();
           reviews.put(review);
         }
         result.put("reviews", reviews);
         result.put("book", book);
         resp.getWriter().write(result.toString());
-      }
-      catch (JSONException jse) {
+      } catch (JSONException jse) {
         resp.getWriter().write("Error JSONException" + jse);
       }
-    }
-      
-    if (req.getParameter("testing") == null) {
-      resp.setContentType("application/json"); 
-      resp.getWriter().println("Hello, this is a testing servlet. \n\n");
-      Properties p = System.getProperties();
-      p.list(resp.getWriter());
-
     } else {
-      UserService userService = UserServiceFactory.getUserService();
-      User currentUser = userService.getCurrentUser();
-
-      if (currentUser != null) {
-        resp.setContentType("application/json");
-        resp.getWriter().println("Hello, " + currentUser.getNickname());
-      } else {
-        resp.sendRedirect(userService.createLoginURL(req.getRequestURI()));
-      }
+      resp.getWriter().write("Error: ISBN not provided");
+      resp.sendError(resp.SC_PRECONDITION_FAILED);
     }
   }
 }

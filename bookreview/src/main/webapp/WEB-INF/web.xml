@@ -16,6 +16,14 @@
     <servlet-name>retrievebookinfo</servlet-name>
     <url-pattern>/retrievebookinfo</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>submitbookinfo</servlet-name>
+    <servlet-class>com.rpurcell.portfolio.bookreview.SubmitBookInfoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>submitbookinfo</servlet-name>
+    <url-pattern>/submitbookinfo</url-pattern>
+  </servlet-mapping>
   <filter>
     <filter-name>ObjectifyFilter</filter-name>
     <filter-class>com.googlecode.objectify.ObjectifyFilter</filter-class>

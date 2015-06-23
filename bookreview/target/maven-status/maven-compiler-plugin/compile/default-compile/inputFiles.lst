@@ -2,4 +2,5 @@
 /usr/local/google/home/rpurcell/book-review/bookreview/src/main/java/com/rpurcell/portfolio/bookreview/SubmitBookReviewServlet.java
 /usr/local/google/home/rpurcell/book-review/bookreview/src/main/java/com/rpurcell/portfolio/bookreview/BookModel.java
 /usr/local/google/home/rpurcell/book-review/bookreview/src/main/java/com/rpurcell/portfolio/bookreview/ObjectifyHelper.java
+/usr/local/google/home/rpurcell/book-review/bookreview/src/main/java/com/rpurcell/portfolio/bookreview/SubmitBookInfoServlet.java
 /usr/local/google/home/rpurcell/book-review/bookreview/src/main/java/com/rpurcell/portfolio/bookreview/ReviewModel.java

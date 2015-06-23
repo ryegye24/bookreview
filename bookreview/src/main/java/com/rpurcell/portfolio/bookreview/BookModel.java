@@ -1,8 +1,5 @@
 package com.rpurcell.portfolio.bookreview;
 
-import java.util.logging.Logger;
-
-import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONException;
 
@@ -22,61 +19,68 @@ import com.googlecode.objectify.annotation.Index;
  */
 @Entity
 public class BookModel {
-  @Id public String ISBN;
+  @Id public String isbn;
   @Index public String title;
+  @Index public String author;
   public String description;
-  private static final Logger log = Logger.getLogger(BookModel.class.getName());
 
   public BookModel() {
-    log.info("<div>Inside the BookModel most basic constructor</div>");
-    this.ISBN = "-1";
-    log.info("<div>Managed to set a default val for the ISBN</div>");
+    this.isbn = "-1";
   }
-  
-  public BookModel(String bookISBN) {
+
+  public BookModel(String isbn) {
     this();
-    this.ISBN = bookISBN;
+    this.isbn = isbn;
   }
-  
-  public BookModel(String bookISBN, String bookTitle) {
-    this(bookISBN);
-    this.title = bookTitle;
+
+  public BookModel(String isbn, String title) {
+    this(isbn);
+    this.title = title;
   }
-  
-  public static BookModel getByISBN(String ISBN) {
-    BookModel book = ObjectifyService.ofy().load().type(BookModel.class).id(ISBN).now();
-    if (book == null) {
-      book = new BookModel(ISBN);
-      ObjectifyService.ofy().save().entity(book).now();
-    }
-    return book;
+
+  public BookModel(String isbn, String title, String author) {
+    this(isbn, title);
+    this.author = author;
+
   }
-  
+
+  public BookModel(String isbn, String title, String author, String description) {
+    this(isbn, title, author);
+    this.description = description;
+  }
+
   public Key<BookModel> getKey() {
-    return Key.create(BookModel.class, this.ISBN);
+    return Key.create(BookModel.class, this.isbn);
   }
-  
-  public static JSONObject getJSONByISBN(String ISBN) {
-    BookModel book_model = getByISBN(ISBN);
-    if (book_model == null) {
-      book_model = new BookModel(ISBN);
-    }
+
+  public JSONObject getJSON() {
     try {
-      JSONObject book_json = new JSONObject();
-      book_json.put("ISBN", ISBN);
-      if (book_model.title == null) {
-        book_model.title = "NOTHING AT ALL!!!";
+      JSONObject bookJson = new JSONObject();
+      bookJson.put("ISBN", this.isbn);
+      bookJson.put("title", this.title);
+      if (this.description == null) {
+        this.description = "";
       }
-      book_json.put("title", book_model.title);
-      if (book_model.description == null) {
-        book_model.description = "NOTHING AT ALL ALSO!!!";
-      }
-      book_json.put("description", book_model.description);
-      ObjectifyService.ofy().save().entity(book_model).now();
-      return book_json;
+      bookJson.put("description", this.description);
+      return bookJson;
     }
     catch (JSONException jse) {
       return null;
+    }
+  }
+
+  public static BookModel getByISBN(String isbn) {
+    BookModel book = ObjectifyService.ofy().load().type(BookModel.class).id(isbn).now();
+    return book;
+  }
+
+  public static JSONObject getJSONByISBN(String isbn) {
+    BookModel book = getByISBN(isbn);
+    if (book == null) {
+      return null;
+    }
+    else {
+      return book.getJSON();
     }
   }
 }
