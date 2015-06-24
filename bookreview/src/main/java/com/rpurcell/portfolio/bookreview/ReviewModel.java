@@ -7,7 +7,6 @@ import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
 import com.googlecode.objectify.annotation.Parent;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONException;
 
@@ -20,15 +19,12 @@ import java.text.SimpleDateFormat;
 /**
  * The @Entity tells Objectify about our entity.  We also register it in OfyHelper.java -- very
  * important. Our primary key @Id is set automatically by the Google Datastore for us.
- * <p/>
- * We add a @Parent to tell the object about its ancestor. We are doing this to support many
- * guestbooks.  Objectify, unlike the AppEngine library requires that you specify the fields you
+ * We add a @Parent to tell the object about its ancestor. We are doing this to support reviews for many
+ * books.  Objectify, unlike the AppEngine library requires that you specify the fields you
  * want to index using @Index.  This is often a huge win in performance -- though if you don't Index
  * your data from the start, you'll have to go back and index it later.
- * <p/>
- * NOTE - all the properties are PUBLIC so that can keep this simple, otherwise,
- * Jackson, wants us to write a BeanSerializaer for cloud endpoints.
  **/
+
 @Entity
 public class ReviewModel {
     private static String isbn;
@@ -43,14 +39,11 @@ public class ReviewModel {
     @Index
     public Date date;
 
-    /**
-     * Simple constructor just sets the date
-     **/
     public ReviewModel() {
         this.date = new Date();
     }
 
-    public ReviewModel(BookModel book, String content) {
+    public ReviewModel(BookModel book, String content, String email) {
         this();
         Key<BookModel> parent = book.getKey();
         if (parent == null) {
@@ -58,20 +51,14 @@ public class ReviewModel {
         }
         this.theBook = parent;
         this.content = content;
-    }
-    /**
-     * A connivence constructor
-     **/
-    public ReviewModel(String isbn, String content) {
-        this(BookModel.getByISBN(isbn), content);
+        this.authorEmail = email;
     }
 
     /**
      * Takes all important fields
      **/
     public ReviewModel(String isbn, String content, String email) {
-        this(isbn, content);
-        this.authorEmail = email;
+        this(BookModel.getByISBN(isbn), content, email);
     }
 
     public String getAuthorEmail() {
@@ -100,6 +87,19 @@ public class ReviewModel {
         } catch (JSONException jse) {
             return null;
         }
+    }
+
+    //These static methods are used to create ReviewModels so clients don't need to manually make ObjectifyService calls.
+    public static ReviewModel CreateReview(String isbn, String content, String email) {
+        ReviewModel review = new ReviewModel(isbn, content, email);
+        ObjectifyService.ofy().save().entity(review).now();
+        return review;
+    }
+
+    public static ReviewModel CreateReview(BookModel book, String content, String email) {
+        ReviewModel review = new ReviewModel(book, content, email);
+        ObjectifyService.ofy().save().entity(review).now();
+        return review;
     }
 
     public static List<ReviewModel> getReviewsByISBN(String isbn) {

@@ -1,14 +1,16 @@
-<!-- Indices written at Fri, 19 Jun 2015 17:38:17 EDT -->
+<!-- Indices written at Wed, 24 Jun 2015 14:07:22 EDT -->
 
 <datastore-indexes>
 
     <!-- Used 1 time in query history -->
-    <datastore-index kind="ReviewModel" ancestor="true" source="manual">
+    <datastore-index kind="ReviewModel" ancestor="true" source="auto">
         <property name="date" direction="desc"/>
     </datastore-index>
 
-    <datastore-index kind="ReviewModel" ancestor="true" source="manual">
-        <property name="authorEmail" direction="desc"/>
+    <!-- Used 1 time in query history -->
+    <datastore-index kind="ReviewModel" ancestor="false" source="auto">
+        <property name="authorEmail" direction="asc"/>
+        <property name="date" direction="desc"/>
     </datastore-index>
 
 </datastore-indexes>
