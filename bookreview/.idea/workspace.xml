@@ -51,7 +51,10 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-              <folding />
+              <folding>
+                <marker date="1435169242000" expanded="true" signature="77:527" placeholder="..." />
+                <marker date="1435169242000" expanded="true" signature="378:505" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -72,11 +75,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SubmitBookReviewServlet.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SubmitBookReviewServlet.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/rpurcell/portfolio/bookreview/SubmitBookReviewServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7567568">
-              <caret line="30" column="58" selection-start-line="30" selection-start-column="58" selection-end-line="30" selection-end-column="58" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="20" column="30" selection-start-line="20" selection-start-column="30" selection-end-line="20" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -106,11 +109,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RetrieveUserInfoServlet.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="RetrieveUserInfoServlet.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/rpurcell/portfolio/bookreview/RetrieveUserInfoServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.9207207">
+              <caret line="41" column="48" selection-start-line="41" selection-start-column="48" selection-end-line="41" selection-end-column="48" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -164,12 +167,12 @@
         <option value="$PROJECT_DIR$/src/main/java/com/rpurcell/portfolio/bookreview/BookModel.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rpurcell/portfolio/bookreview/RetrieveUserInfo.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rpurcell/portfolio/bookreview/SubmitBookInfoServlet.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/rpurcell/portfolio/bookreview/RetrieveUserInfoServlet.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rpurcell/portfolio/bookreview/RetrieveBookInfoServlet.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/target/bookreview-1.0-SNAPSHOT/WEB-INF/appengine-generated/datastore-indexes-auto.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/rpurcell/portfolio/bookreview/ReviewModel.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rpurcell/portfolio/bookreview/SubmitBookReviewServlet.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/rpurcell/portfolio/bookreview/RetrieveUserInfoServlet.java" />
       </list>
     </option>
   </component>
@@ -923,16 +926,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rpurcell/portfolio/bookreview/RetrieveUserInfoServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/rpurcell/portfolio/bookreview/RetrieveBookInfoServlet.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -947,7 +940,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1435169242000" expanded="true" signature="77:527" placeholder="..." />
+            <marker date="1435169242000" expanded="true" signature="378:505" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -967,8 +963,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/rpurcell/portfolio/bookreview/SubmitBookReviewServlet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7567568">
-          <caret line="30" column="58" selection-start-line="30" selection-start-column="58" selection-end-line="30" selection-end-column="58" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="20" column="30" selection-start-line="20" selection-start-column="30" selection-end-line="20" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rpurcell/portfolio/bookreview/RetrieveUserInfoServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.9207207">
+          <caret line="41" column="48" selection-start-line="41" selection-start-column="48" selection-end-line="41" selection-end-column="48" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

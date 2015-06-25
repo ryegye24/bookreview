@@ -37,7 +37,9 @@ public class RetrieveUserInfoServlet extends HttpServlet {
         } catch (JSONException jse) {
             resp.getWriter().write("Error JSONException" + jse);
             resp.sendError(resp.SC_INTERNAL_SERVER_ERROR);
+            return;
         }
+        resp.getWriter().write(user.toString());
 
     }
 }
