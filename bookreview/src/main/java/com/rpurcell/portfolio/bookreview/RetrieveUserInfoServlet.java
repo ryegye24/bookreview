@@ -40,6 +40,5 @@ public class RetrieveUserInfoServlet extends HttpServlet {
             return;
         }
         resp.getWriter().write(user.toString());
-
     }
 }

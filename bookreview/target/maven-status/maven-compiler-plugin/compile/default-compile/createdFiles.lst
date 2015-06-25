@@ -1,3 +1,3 @@
-com\rpurcell\portfolio\bookreview\RetrieveUserInfoServlet.class
-com\rpurcell\portfolio\bookreview\RetrieveBookInfoServlet.class
-com\rpurcell\portfolio\bookreview\SubmitBookInfoServlet.class
+com/rpurcell/portfolio/bookreview/RetrieveBookInfoServlet.class
+com/rpurcell/portfolio/bookreview/RetrieveUserInfoServlet.class
+com/rpurcell/portfolio/bookreview/SubmitBookInfoServlet.class
